@@ -21,7 +21,7 @@ jobs:
 
             # Checkout the code in the pull request
             - name: 'Checkout source code'
-              run: 'git clone https://github.com/douglascayers-org/sfdx-mass-action-scheduler.git'
+              run: 'git clone https://github.com/douglascayers-org/sfdx-mass-action-scheduler.git .'
 
             # Store secret for dev hub
             - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
