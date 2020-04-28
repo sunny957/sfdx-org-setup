@@ -19,14 +19,13 @@ jobs:
                   tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
                   ./sfdx-cli/install
 
+            # Authenticate dev hub
+            - name: 'Clear folder'
+              run: 'rm -r *'
+              
             # Checkout the code in the pull request
             - name: 'Checkout source code'
-              run: 'git clone https://github.com/douglascayers-org/sfdx-mass-action-scheduler.git repo'
-              
-            - run: 'pwd'
-            - run: 'cd repo/'
-            - run: 'ls'
-            - run: 'pwd'
+              run: 'git clone https://github.com/douglascayers-org/sfdx-mass-action-scheduler.git .'
 
             # Store secret for dev hub
             - name: 'Populate auth file with DEVHUB_SFDX_URL secret'
