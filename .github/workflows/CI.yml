@@ -23,7 +23,8 @@ jobs:
             - name: 'Checkout source code'
               run: 'git clone https://github.com/douglascayers-org/sfdx-mass-action-scheduler.git repo'
               
-            - run: 'cd /repo'
+            - run: 'pwd'
+            - run: 'cd repo/'
             - run: 'ls'
             - run: 'pwd'
 
