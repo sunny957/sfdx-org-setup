@@ -50,4 +50,13 @@ jobs:
               
             # Run 
             - name: 'Get user details'
-              run: 'sfdx force:user:display'
+              run: 'echo ::set-output name=scratchorg::$(sfdx force:user:display)'
+
+            # Notify slack
+            - name: Notify slack
+              env:
+                SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+              uses: pullreminders/slack-action@master
+              with:
+                args: '{\"channel\":\"C012Y8Y4NP4\",\"text\":\"Hello world\"}'
+              
