@@ -45,7 +45,7 @@ jobs:
               run:  echo "::set-output name=SF_ORG::$(sfdx)"
                 
             - name: 'Show user details'
-              run: 'echo env.SF_ORG'
+              run: echo "${{env.SF_ORG}}"
 
             # Notify slack
             - name: Notify slack
@@ -53,5 +53,5 @@ jobs:
                 SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
               uses: pullreminders/slack-action@master
               with:
-                args: '{\"channel\":\"G0143CNFEUW\",\"text\":\"Build Date: ${{steps.date.outputs.date}} \n${{env.SF_ORG}}\"}'
+                args: '{\"channel\":\"G0143CNFEUW\",\"text\":\"Build Date: ${{steps.date.outputs.date}} for commit {${github.sha}}\n${{env.SF_ORG}}\"}'
               
