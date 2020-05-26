@@ -43,7 +43,7 @@ jobs:
             # Run 
             - name: 'Get user details'
               id: org
-              run:  echo "::set-output name=SF_ORG::$(sfdx)"
+              run:  echo "::set-output name=org::$(sfdx)"
                 
             - name: 'Show user details'
               run: echo $env.SF_ORG
