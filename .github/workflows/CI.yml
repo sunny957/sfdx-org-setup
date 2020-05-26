@@ -40,14 +40,6 @@ jobs:
             - name: 'Create scratch org'
               run: 'sfdx force:org:create -f  config/project-scratch-def.json -a GitAuto -s -d 1'
 
-            # Deploy source to scratch org
-            - name: 'Push source'
-              run: 'sfdx force:source:push'
-
-            # Run Apex tests in scratch org
-            - name: 'Run Apex tests'
-              run: 'sfdx force:user:password:generate'
-              
             # Run 
             - name: 'Get user details'
               run: |
