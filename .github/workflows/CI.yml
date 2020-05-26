@@ -36,14 +36,17 @@ jobs:
             - name: 'Authenticate Dev Hub'
               run: 'sfdx force:auth:sfdxurl:store -f ./DEVHUB_SFDX_URL.txt -a devhub -d'
 
+            - name: Get current date
+              id: date
+              run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        
             # Create scratch org
             - name: 'Create scratch org'
               run: 'sfdx force:org:create -f  config/project-scratch-def.json -a GitAuto -s -d 1'
 
             # Run 
             - name: 'Get user details'
-              run: |
-                echo "::set-output name=SF_ORG::$(sfdx force:user:display)"
+              run:  echo "::set-output name=SF_ORG::$(sfdx force:user:display)"
                 
             - name: 'Show user details'
               run: 'echo env.SF_ORG'
@@ -54,5 +57,5 @@ jobs:
                 SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
               uses: pullreminders/slack-action@master
               with:
-                args: "{\"channel\":\"G0143CNFEUW\",\"text\":\"${{date +'%Y-%m-%d'}}${{env.SF_ORG}}\"}"
+                args: '{\"channel\":\"G0143CNFEUW\",\"text\":\"Build Date: ${{steps.date.outputs.date}} \n${{env.SF_ORG}}\"}'
               
